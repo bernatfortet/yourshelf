@@ -1,8 +1,0 @@
-class Genre < ActiveRecord::Base
-  attr_accessible :name
-  
-  #Album
-  has_many :albumGenre
-  has_many :genres, :through => :albumGenre
-  
-end
