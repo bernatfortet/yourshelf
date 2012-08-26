@@ -7,6 +7,6 @@ class Song < ActiveRecord::Base
   
   #Users
   has_many :songLike
-  has_many :likers, :through => :songLike, :source => :user
+  has_many :likers, :through => :songLike, :source => :song
   
 end

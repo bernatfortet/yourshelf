@@ -3,6 +3,6 @@ class Genre < ActiveRecord::Base
   
   #Album
   has_many :albumGenre
-  has_many :albums, :through => :albumGenre
+  has_many :genres, :through => :albumGenre
   
 end

@@ -7,6 +7,6 @@ class Category < ActiveRecord::Base
   
   #Band
   has_many :categoryBand
-  has_many :albums, :through => :categoryBand
+  has_many :albums, :through => :albumCategory
   
 end
