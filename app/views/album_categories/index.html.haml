@@ -1,0 +1,21 @@
+%h1 Listing album_categories
+
+%table
+  %tr
+    %th Album
+    %th Category
+    %th
+    %th
+    %th
+
+  - @album_categories.each do |album_category|
+    %tr
+      %td= album_category.album_id
+      %td= album_category.category_id
+      %td= link_to 'Show', album_category
+      %td= link_to 'Edit', edit_album_category_path(album_category)
+      %td= link_to 'Destroy', album_category, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Album category', new_album_category_path

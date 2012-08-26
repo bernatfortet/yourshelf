@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Category:
+  = @categories_band.category_id
+%p
+  %b Band:
+  = @categories_band.band_id
+
+= link_to 'Edit', edit_categories_band_path(@categories_band)
+\|
+= link_to 'Back', categories_bands_path

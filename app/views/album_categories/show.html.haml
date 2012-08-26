@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Album:
+  = @album_category.album_id
+%p
+  %b Category:
+  = @album_category.category_id
+
+= link_to 'Edit', edit_album_category_path(@album_category)
+\|
+= link_to 'Back', album_categories_path

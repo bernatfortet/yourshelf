@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @song_like.user_id
+%p
+  %b Song:
+  = @song_like.song_id
+
+= link_to 'Edit', edit_song_like_path(@song_like)
+\|
+= link_to 'Back', song_likes_path

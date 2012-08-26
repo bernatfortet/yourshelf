@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Genre:
+  = @genre_band.genre_id
+%p
+  %b Band:
+  = @genre_band.band_id
+
+= link_to 'Edit', edit_genre_band_path(@genre_band)
+\|
+= link_to 'Back', genre_bands_path

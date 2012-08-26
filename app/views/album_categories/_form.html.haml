@@ -1,0 +1,16 @@
+= form_for @album_category do |f|
+  -if @album_category.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@album_category.errors.count, "error")} prohibited this album_category from being saved:"
+      %ul
+        - @album_category.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :album_id
+    = f.number_field :album_id
+  .field
+    = f.label :category_id
+    = f.number_field :category_id
+  .actions
+    = f.submit 'Save'

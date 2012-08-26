@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @user.name
+%p
+  %b Surname:
+  = @user.surname
+%p
+  %b Image url:
+  = @user.image_url
+%p
+  %b Website:
+  = @user.website
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Password:
+  = @user.password
+%p
+  %b Facebookid:
+  = @user.facebookID
+%p
+  %b Twitterid:
+  = @user.twitterID
+%p
+  %b Googleid:
+  = @user.googleID
+%p
+  %b Has weekly mailing:
+  = @user.has_weekly_mailing
+%p
+  %b Has features newsletter:
+  = @user.has_features_newsletter
+%p
+  %b Language:
+  = @user.language_id
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

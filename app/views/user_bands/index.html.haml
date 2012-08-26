@@ -1,0 +1,21 @@
+%h1 Listing user_bands
+
+%table
+  %tr
+    %th User
+    %th Band
+    %th
+    %th
+    %th
+
+  - @user_bands.each do |user_band|
+    %tr
+      %td= user_band.user_id
+      %td= user_band.band_id
+      %td= link_to 'Show', user_band
+      %td= link_to 'Edit', edit_user_band_path(user_band)
+      %td= link_to 'Destroy', user_band, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New User band', new_user_band_path

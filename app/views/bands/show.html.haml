@@ -1,0 +1,63 @@
+.shelf
+	.background
+	.inner
+		.albums
+			.album
+				.cover
+					=image_tag("cover.jpg")
+			.album
+				.cover
+					=image_tag("cover.jpg")
+			.album
+				.cover
+					=image_tag("cover.jpg")
+			.album
+				.cover
+					=image_tag("cover.jpg")
+			.album
+				.cover
+					=image_tag("cover.jpg")
+			.album
+				.cover
+					=image_tag("cover.jpg")
+
+
+.band
+	.header
+	.albums
+		= render :partial => "album"
+
+	.info
+		.about
+			= @band.biography
+		.social
+			%a.facebook(href="#" title="Facebook")
+				%span Facebook
+			%a.twitter(href="#" title="Twitter")
+				%span Twitter
+
+		.members Member 1, Member 2
+
+.player
+	.current-track
+		.cover
+			=image_tag("cover.jpg")
+		.meta
+			%a.album-name(href="#" title="FastFall") FastFall
+			by
+			%a.band-name(href="#" title="Lifeformed")
+				= @band.name
+		.track-name Dark Flute
+
+	.controls
+		.previous
+		.play
+		.next
+		.timeline
+			.progress
+			.current-time 00:30
+			.duration 03:30
+		.sound
+			.mute
+			.bar
+				.volume

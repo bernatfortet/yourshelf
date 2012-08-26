@@ -1,0 +1,16 @@
+= form_for @categories_band do |f|
+  -if @categories_band.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@categories_band.errors.count, "error")} prohibited this categories_band from being saved:"
+      %ul
+        - @categories_band.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :category_id
+    = f.number_field :category_id
+  .field
+    = f.label :band_id
+    = f.number_field :band_id
+  .actions
+    = f.submit 'Save'

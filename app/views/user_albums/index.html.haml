@@ -1,0 +1,21 @@
+%h1 Listing user_albums
+
+%table
+  %tr
+    %th User
+    %th Album
+    %th
+    %th
+    %th
+
+  - @user_albums.each do |user_album|
+    %tr
+      %td= user_album.user_id
+      %td= user_album.album_id
+      %td= link_to 'Show', user_album
+      %td= link_to 'Edit', edit_user_album_path(user_album)
+      %td= link_to 'Destroy', user_album, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New User album', new_user_album_path

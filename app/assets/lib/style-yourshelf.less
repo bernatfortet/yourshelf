@@ -1,0 +1,164 @@
+@import "fonts.less";
+@import "style-global.less";
+
+//COLORS ==========================================
+
+	//Base Colors
+		@dropAreaColor: #dedbcf;
+		@creamBackground: #f0ede4;
+		@white: white;
+		@black: #31312f;
+		@pureBlack: #000000;
+		.black{ color: lighten( @black, 5% );}
+
+	//Selection Color
+		@selectionBackground: #e9654f;
+		@selectionText: #fff;
+		::-moz-selection{ background: @selectionBackground; color:@selectionText; text-shadow: none; }
+		::selection { background:@selectionBackground; color:@selectionText; text-shadow: none; }
+		a:link { -webkit-tap-highlight-color: @selectionBackground; }
+
+
+//TYPOGRAPHY =======================================================================
+
+	.hyphen{ -hyphens: auto; -moz-hyphens: auto; -webkit-hyphens: auto;}
+	.read{ .fs(12px, 1.8em ); .hyphen; }
+
+	.title{ .upcase; text-shadow:0 0 1px rgba(0, 0, 0, 0.2); }
+
+
+//ELEMENT STYLES  ===============================================
+
+	.dashed-item{ background:@white; .bs( 0 0 8px fade( @black, 10% ) ); .br(2px); .anim(50ms);
+		&:hover{ border:1px dashed lighten(@black, 30%); .anim; }
+	}	
+
+	//Drop Item
+	.drop-item{ .rel; .br(3px); .anchor; border:1px solid fade(@white, 60%); background:none;
+		&[data-state="Active"]{}
+		&[data-state="Dragging"]{}
+		&[data-state="Hover"]{}
+		&[data-state="Release"]{}
+		
+		div{ .br(3px);}
+		
+		.drop-area{ .expand; .rel;
+			.background{ .expand; background: @dropAreaColor; }
+			.inner-shadow-tilted{ .expand; .bs( 9px 9px 14px fade( @black, 32% ) inset); .anim; }
+			.inner-shadow{ .expand; .bs( 9px 9px 14px fade( @black, 12% ) inset );  .anim;}
+			.title{ .rel; top:44%; .gn-bold; .fs(14); .black; .tcenter;}
+			
+			&:hover{
+				.inner-shadow-tilted{ .bs( 9px 9px 24px fade( @black, 45%) inset ); .anim;}
+				.inner-shadow{ .bs( 9px 9px 18px fade( @black, 19% ) inset); .anim;}
+			}
+			
+			.info{
+						
+			}
+		}
+	}
+
+	.cover{
+		img{ width:100%; height:100%;}
+	}
+
+//Player  ===============================================
+	@playerHeight:80px;
+
+	body{ margin-bottom:@playerHeight + 20px;}
+	.player{ width:100%; height:@playerHeight; .fixed; bottom:0; background-color: lighten(black, 7%); .bs(0 11px 5px 10px black, 0 15px 15px -17px fade(white, 20%) inset); border-top: 1px solid rgba(0, 0, 0, 0.1);
+		.current-track{ width:300px; .fl; margin:15px 0 0 10%;
+			.cover{ width:50px; height:50px; .fl; margin-right:20px; overflow:hidden;}
+			.meta{ .fl; margin-top:5px; .gn-book; .fs(14); color:darken(@white, 70%);}
+			.album-name, .band-name{ color:darken(@white, 40%); text-decoration:none;
+				&:hover{ text-decoration:underline;}
+			}
+			.track-name{ width:230px;.fl; margin-top:10px;  .gn-bold; .fs(20); .white;}
+		}
+		.controls{ height:100%; .rel; .fl;
+			//Base "Control" class
+			@controlBkg:grey;
+			.control{ .anchor; background-color:@controlBkg;
+				&:hover{ background-color:@white;}
+			}
+
+			//Clasic Controls Play, next, previous
+			.play{ width:45px; height:45px; .rel; top:50%; .fl; margin:-22px 10px 0 0; .control;
+				&:hover{}
+			}
+			.previous, .next{ width:30px; height:30px; .rel; top:50%; .fl; margin:-15px 10px 0 0; .control;
+				&:hover{}
+			}
+
+			//Timline Player Controls
+			.timeline{ width:300px; height:15px; .rel; top:50%; .fl; margin:-14px 25px 0 15px; background:darken(@controlBkg, 35%); .anchor;
+				.type{ .gn-book; .fs(10); color:darken(@white, 40%); }
+
+				.progress{ width:50%; height:100%; background:darken(@white, 50%)}
+				.current-time{ .abs; left:0; bottom:-16px; .type;}
+				.duration{ .abs; right:0; bottom:-16px; .type;}
+
+				&:hover{
+					.progress{ background-color:@white;}
+					.current-time{ color:@white;}
+				}
+			}
+			//Sound Controls
+			.sound{ .fl; margin-top:25px;
+				.mute{ width:20px; height:20px; .fl; margin-right:15px; .control;
+					&:hover{}
+				}
+				.bar{width:100px; height:20px; .rel; .fl; background:darken(@controlBkg, 35%); .anchor;
+					.volume{ width:50%; height:100%; background-color:@controlBkg;}
+					&:hover{
+						.volume{ background-color:@white;}
+					}
+				}
+			}
+		}
+
+	}
+
+
+//OVERLAYS =======================================================================
+
+	/*Popbox Item*/
+	.overlay{ .expand; position:fixed; background:fade( @black, 50%); z-index:2; 
+			> .background{ .expand; background:url("patterns/diagonal-stripes.png") repeat; .op(0.16); }
+	}
+	.popbox{ width:500px; height:200px; .rel; margin:50px auto 0; .br(6px); background:@white; .bs( 0 0 18px fade( @black, 75% ) ); overflow:hidden;
+			.background{ .expand; background:url("patterns/diagonal-stripes.png") repeat; .op(0.04); }
+			.close{ width:35px; height:35px; .abs; top:0; right:0; background:fade( @black, 20%); .anchor; z-index:2; }
+			.content{ width:auto; height:auto; .rel; padding:30px;
+					.title{ .gn-bold; .fs(14); .black; margin-bottom:10px;}
+					.description{ .read;}
+			}
+	}
+
+
+//BUTTONS =======================================================================
+
+	.green-button{ .button; .gradient( #9eda20, #73c71a );
+		&:hover{ .gradient( #b6f407, #66e604 ) }
+		&:active{ .gradient( #73c71a, #9eda20 )}
+	}
+	.blue-button{ .button; .gradient( #20bdd7, #1a99c7 );
+		&:hover{ .gradient( #07def3, #04ade6 ) }
+		&:active{ .gradient( #1a99c7, #20bdd7 )}
+	}
+	.salmon-button{ .button; .gradient( #20bdd7, #1a99c7 );
+		&:hover{ .gradient( #07def3, #04ade6 ) }
+		&:active{ .gradient( #1a99c7, #20bdd7 )}
+	}
+
+	.button{ padding:12px 20px; .gn-black; .fs(13px); .white; .br(2px); box-shadow:0px 0px 4px fade(@black, 30%), 1px 1px 0 fade(@white, 50%) inset; border:1px solid fade( @black, 30% );  text-shadow:-1px -1px 0 fade( @black, 20%), 0 0 2px fade( @black, 30%), 0 0 6px fade( @white, 25%); .upcase; .tcenter; .anim;
+		&:hover{ box-shadow:0px 0px 4px fade(@black, 30%), 1px 1px 1px fade(@white, 100%) inset; .anim; }
+		&:active{ box-shadow: -1px -1px 1px fade(@white, 30%) inset, 1px 1px 3px fade(@black, 30%) inset; .anim; }
+	}
+
+
+//INPUTS =======================================================================
+
+	.textfield{ padding:5px 10px; .gn-black; .fs(18px, 1em, -0.08em); .black; background:fade(@creamBackground, 50%); .br(2px); border:1px solid fade( @black, 10% );}
+

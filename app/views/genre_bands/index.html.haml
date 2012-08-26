@@ -1,0 +1,21 @@
+%h1 Listing genre_bands
+
+%table
+  %tr
+    %th Genre
+    %th Band
+    %th
+    %th
+    %th
+
+  - @genre_bands.each do |genre_band|
+    %tr
+      %td= genre_band.genre_id
+      %td= genre_band.band_id
+      %td= link_to 'Show', genre_band
+      %td= link_to 'Edit', edit_genre_band_path(genre_band)
+      %td= link_to 'Destroy', genre_band, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Genre band', new_genre_band_path

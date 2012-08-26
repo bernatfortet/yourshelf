@@ -1,0 +1,41 @@
+%h1 Listing users
+
+%table
+  %tr
+    %th Name
+    %th Surname
+    %th Image url
+    %th Website
+    %th Username
+    %th Password
+    %th Facebookid
+    %th Twitterid
+    %th Googleid
+    %th Has weekly mailing
+    %th Has features newsletter
+    %th Language
+    %th
+    %th
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.surname
+      %td= user.image_url
+      %td= user.website
+      %td= user.username
+      %td= user.password
+      %td= user.facebookID
+      %td= user.twitterID
+      %td= user.googleID
+      %td= user.has_weekly_mailing
+      %td= user.has_features_newsletter
+      %td= user.language_id
+      %td= link_to 'Show', user
+      %td= link_to 'Edit', edit_user_path(user)
+      %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New User', new_user_path

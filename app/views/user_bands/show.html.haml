@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @user_band.user_id
+%p
+  %b Band:
+  = @user_band.band_id
+
+= link_to 'Edit', edit_user_band_path(@user_band)
+\|
+= link_to 'Back', user_bands_path

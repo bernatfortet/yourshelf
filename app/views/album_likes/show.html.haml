@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @album_like.user_id
+%p
+  %b Album:
+  = @album_like.album_id
+
+= link_to 'Edit', edit_album_like_path(@album_like)
+\|
+= link_to 'Back', album_likes_path

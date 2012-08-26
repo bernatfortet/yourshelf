@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @album.title
+%p
+  %b Description:
+  = @album.description
+%p
+  %b Listened count:
+  = @album.listened_count
+%p
+  %b Purchased count:
+  = @album.purchased_count
+
+= link_to 'Edit', edit_album_path(@album)
+\|
+= link_to 'Back', albums_path

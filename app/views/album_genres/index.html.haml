@@ -1,0 +1,21 @@
+%h1 Listing album_genres
+
+%table
+  %tr
+    %th Album
+    %th Genre
+    %th
+    %th
+    %th
+
+  - @album_genres.each do |album_genre|
+    %tr
+      %td= album_genre.album_id
+      %td= album_genre.genre_id
+      %td= link_to 'Show', album_genre
+      %td= link_to 'Edit', edit_album_genre_path(album_genre)
+      %td= link_to 'Destroy', album_genre, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Album genre', new_album_genre_path

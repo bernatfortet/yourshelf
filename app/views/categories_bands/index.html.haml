@@ -1,0 +1,21 @@
+%h1 Listing categories_bands
+
+%table
+  %tr
+    %th Category
+    %th Band
+    %th
+    %th
+    %th
+
+  - @categories_bands.each do |categories_band|
+    %tr
+      %td= categories_band.category_id
+      %td= categories_band.band_id
+      %td= link_to 'Show', categories_band
+      %td= link_to 'Edit', edit_categories_band_path(categories_band)
+      %td= link_to 'Destroy', categories_band, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Categories band', new_categories_band_path

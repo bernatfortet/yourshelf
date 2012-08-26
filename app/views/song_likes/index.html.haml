@@ -1,0 +1,21 @@
+%h1 Listing song_likes
+
+%table
+  %tr
+    %th User
+    %th Song
+    %th
+    %th
+    %th
+
+  - @song_likes.each do |song_like|
+    %tr
+      %td= song_like.user_id
+      %td= song_like.song_id
+      %td= link_to 'Show', song_like
+      %td= link_to 'Edit', edit_song_like_path(song_like)
+      %td= link_to 'Destroy', song_like, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Song like', new_song_like_path

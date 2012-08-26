@@ -1,0 +1,21 @@
+%h1 Listing album_likes
+
+%table
+  %tr
+    %th User
+    %th Album
+    %th
+    %th
+    %th
+
+  - @album_likes.each do |album_like|
+    %tr
+      %td= album_like.user_id
+      %td= album_like.album_id
+      %td= link_to 'Show', album_like
+      %td= link_to 'Edit', edit_album_like_path(album_like)
+      %td= link_to 'Destroy', album_like, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Album like', new_album_like_path

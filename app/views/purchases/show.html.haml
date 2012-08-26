@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @purchase.user_id
+%p
+  %b Bundle:
+  = @purchase.bundle_id
+
+= link_to 'Edit', edit_purchase_path(@purchase)
+\|
+= link_to 'Back', purchases_path
