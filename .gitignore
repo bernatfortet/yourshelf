@@ -11,3 +11,6 @@ db/development.sqlite3
 /log/*.log
 # or operating system, you probably want to add a global ignore instead:
 # Ignore all logfiles and tempfiles.
+
+# Ignore all ubuntu temp files
+*.*~
