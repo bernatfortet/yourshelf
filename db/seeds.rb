@@ -6,20 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create([
-	{ name: "Bernat" },
-	{ name: "Ferri" },
-	{ name: "Sampe" },
-	{ name: "John" }
-]) 
 
-Album.create([
-	{ title: "FastFall", description: "his is the original sountrack for the indie game Dustforce. There are 3 bonus tracks included if you buy the full album! There are also liner notes and a nice tracklist insert."  }
-])
-
-Album.create([
-	{ name: "CideTime" },
-	{ name: "LoneStar" },
-	{ name: "DoomSock" },
-	{ name: "TheCloud" },
-])
+user = User.create({ name: "Bernat" })
+band = user.addBand( "Lifeformed" );
+album = band.addAlbum( "")
