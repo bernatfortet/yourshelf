@@ -2,7 +2,8 @@
 	%img.cover(src="../assets/cover.jpg")
 
 	.tracks
-		.title Fastfall
+		.title
+			= album.title
 		.list
 			- album.songs.each do |song|
 				.track

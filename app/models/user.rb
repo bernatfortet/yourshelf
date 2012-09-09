@@ -24,10 +24,17 @@ class User < ActiveRecord::Base
 	has_many :songLike
 	has_many :likedSongs, :through => :songLike, :source => :song
 
-	def connectToBand( band_id )
+	def belongToBand( band_id )
 		user_band 	= UserBand.create({ user_id: self.id, band_id: band_id })
 		Band.find( band_id )
 	end
+
+	def addAlbumToShelf( album_id )
+		user_album 	= UserAlbum.create({ user_id: self.id, album_id: album_id })
+		Album.find( album_id )
+	end
+
+
 
   
 end

@@ -2,25 +2,10 @@
 	.background
 	.inner
 		.albums
-			.album
-				.cover
-					=image_tag("cover.jpg")
-			.album
-				.cover
-					=image_tag("cover.jpg")
-			.album
-				.cover
-					=image_tag("cover.jpg")
-			.album
-				.cover
-					=image_tag("cover.jpg")
-			.album
-				.cover
-					=image_tag("cover.jpg")
-			.album
-				.cover
-					=image_tag("cover.jpg")
-
+			- User.first.albums.each do |album|
+				.album
+					.cover
+						=image_tag("cover.jpg")
 
 .band
 	.header

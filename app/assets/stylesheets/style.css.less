@@ -100,90 +100,91 @@ body{ background:@creamBackground;}
     BACKEND
  =================================================================*/
 
-
-body > .header{ width:100%; background:#e9654f;
-		.title{ padding:40px 0; .tcenter; .gn-black; .fs(22); .white;}
-}
-
-.wood{ .hide; .expand; position:fixed; background:url("../images/wood-bkg.jpg") no-repeat center center; border-right:10px solid #000;  border-bottom:10px solid #000; .bs(10px, #000); z-index:4;
-	.title{ .rel; top:200px; .gn-black; .fs(50px, 1me, -0.02em); color:#1f1f1f; .tcenter; text-shadow:0 30px 15px fade(@pureBlack, 50%)}
-	.loading{ width:230px; height:20px; .rel; top:250px; margin:0 auto; background:#311c17; box-shadow:5px 5px 9px fade(#000000, 50%) inset, 0 0 6px fade( @white, 20%); border:1px solid fade(@pureBlack, 0.01%); .br(2px);
-		.bar{ width:0%; min-width:1px; height:100%; .rel; .gradient-hor( darken( #aee311, 20%), #aee311 ); box-shadow: 0 0 4px fade(#000000, 80%) inset; .br(2px); }
-			.glow{ width:3px; height:100%; .abs; right:0; background:fade(#aee311, 50%); box-shadow:0 0 10px #aee311, 0 0 10px #aee311, 0 0 10px #aee311,0 0 10px #aee311, 0 0 10px #aee311;}
+.backend{
+	body > .header{ width:100%; background:#e9654f;
+			.title{ padding:40px 0; .tcenter; .gn-black; .fs(22); .white;}
 	}
-}
 
-.wrapper{ width:1024px; margin:0 auto;}
- 
-	.album{ width:1024px; padding-bottom:40px; border-top:1px solid fade(@white, 60% ); border-bottom:1px solid fade(@black, 10% );
-		.header{
-			> .title{ margin:40px 0 25px 0; display:inline-block; .gn-black; .fs(28px); .black; .br; border:1px solid transparent;
-				&:hover{ border:1px solid fade(@black, 30%);}
+	.wood{ .hide; .expand; position:fixed; background:url("../images/wood-bkg.jpg") no-repeat center center; border-right:10px solid #000;  border-bottom:10px solid #000; .bs(10px, #000); z-index:4;
+		.title{ .rel; top:200px; .gn-black; .fs(50px, 1me, -0.02em); color:#1f1f1f; .tcenter; text-shadow:0 30px 15px fade(@pureBlack, 50%)}
+		.loading{ width:230px; height:20px; .rel; top:250px; margin:0 auto; background:#311c17; box-shadow:5px 5px 9px fade(#000000, 50%) inset, 0 0 6px fade( @white, 20%); border:1px solid fade(@pureBlack, 0.01%); .br(2px);
+			.bar{ width:0%; min-width:1px; height:100%; .rel; .gradient-hor( darken( #aee311, 20%), #aee311 ); box-shadow: 0 0 4px fade(#000000, 80%) inset; .br(2px); }
+				.glow{ width:3px; height:100%; .abs; right:0; background:fade(#aee311, 50%); box-shadow:0 0 10px #aee311, 0 0 10px #aee311, 0 0 10px #aee311,0 0 10px #aee311, 0 0 10px #aee311;}
+		}
+	}
+
+	.wrapper{ width:1024px; margin:0 auto;}
+	 
+		.album{ width:1024px; padding-bottom:40px; border-top:1px solid fade(@white, 60% ); border-bottom:1px solid fade(@black, 10% );
+			.header{
+				> .title{ margin:40px 0 25px 0; display:inline-block; .gn-black; .fs(28px); .black; .br; border:1px solid transparent;
+					&:hover{ border:1px solid fade(@black, 30%);}
+				}
 			}
-		}
-		.info{ float:left; width:400px; margin-right:70px;
-			.img{ width:400px; height:400px; margin-bottom:30px; }
-			.description{ .read; }
-		
-		}
+			.info{ float:left; width:400px; margin-right:70px;
+				.img{ width:400px; height:400px; margin-bottom:30px; }
+				.description{ .read; }
+			
+			}
 
-		.songs{width:540px; float:right;
-			.drop-item{ height:60px;}
+			.songs{ width:540px; float:right;
+				.drop-item{ height:60px;}
 
-			.list{  background:@white; border:1px solid fade(black, 10%); .br(3px); .bs( 8px, fade(black, 10%));
-				.song{ width:100%; .rel; height:45px; border-bottom:1px solid fade(black, 10%); .anim(50ms); .unselectable;
-					.font{ .gn-bold; .fs(16); .black; .upcase; }
-					.text-element{ .rel; top:18px;}
+				.list{  background:@white; border:1px solid fade(black, 10%); .br(3px); .bs( 8px, fade(black, 10%));
+					.song{ width:100%; .rel; height:45px; border-bottom:1px solid fade(black, 10%); .anim(50ms); .unselectable;
+						.font{ .gn-bold; .fs(16); .black; .upcase; }
+						.text-element{ .rel; top:18px;}
 
-					//States
-					&:hover{ .anim;
-						.options{ .show;}
+						//States
+						&:hover{ .anim;
+							.options{ .show;}
+
+						}
+						&[data-state="Uploading"]{
+							.background{ background:#59d099}
+							.grabber, .options{ .hide;}
+						}
+						&[data-state="Processing"]{
+							.background{ background:#65d870}
+							.grabber, .options{ .hide;}
+						}
+						&[data-state="Complete"]{
+							.background{ background:#c1e150}
+							.grabber, .options{ .hide;}
+						}
+						&[data-state="Active"]{
+							> .title, .edit{ .show;}
+						}
+						&[data-state="Editing"]{ .selectable;
+							> .title, .edit{ .hide;}
+							input, .accept{ .show;}
+						}
+
+						&[data-state="Moving"]{
+							> * { .hide; background:grey;}
+						}
+
+						//Items
+						.background{ .expand; width:0%;  background:color; }
+						.grabber{ width:32px; height:100%; float:left; margin-right:3px; background:url("../images/grabber.png") 12px center no-repeat; .op(0.15); cursor:move;
+							&:hover{ .op(0.6);}
+						}
+						.text-status{ float:left; margin:0 16px 0 16px; .text-element; .font; .gn-light;}
+						> .title{ width:200px; float:left; .text-element; .font; }
+						.duration{ width:100px; float:left; .text-element; .gn-book; .fs(12); }
+
+						input{ .hidden; width:200px; .abs; left:26px; top:12px; padding:5px; .font; background:transparent; border:1px solid fade(@black, 20%); .br(3px);}
+
+						.options{ .hidden;
+							.edit{ float:right; width:45px; height:45px; background: fade(@black, 35%); }
+							.accept{ float:right; width:45px; height:45px; background: fade(@black, 35%);  }
+						}
 
 					}
-					&[data-state="Uploading"]{
-						.background{ background:#59d099}
-						.grabber, .options{ .hide;}
-					}
-					&[data-state="Processing"]{
-						.background{ background:#65d870}
-						.grabber, .options{ .hide;}
-					}
-					&[data-state="Complete"]{
-						.background{ background:#c1e150}
-						.grabber, .options{ .hide;}
-					}
-					&[data-state="Active"]{
-						> .title, .edit{ .show;}
-					}
-					&[data-state="Editing"]{ .selectable;
-						> .title, .edit{ .hide;}
-						input, .accept{ .show;}
-					}
-
-					&[data-state="Moving"]{
-						> * { .hide; background:grey;}
-					}
-
-					//Items
-					.background{ .expand; width:0%;  background:color; }
-					.grabber{ width:32px; height:100%; float:left; margin-right:3px; background:url("../images/grabber.png") 12px center no-repeat; .op(0.15); cursor:move;
-						&:hover{ .op(0.6);}
-					}
-					.text-status{ float:left; margin:0 16px 0 16px; .text-element; .font; .gn-light;}
-					> .title{ width:200px; float:left; .text-element; .font; }
-					.duration{ width:100px; float:left; .text-element; .gn-book; .fs(12); }
-
-					input{ .hidden; width:200px; .abs; left:26px; top:12px; padding:5px; .font; background:transparent; border:1px solid fade(@black, 20%); .br(3px);}
-
-					.options{ .hidden;
-						.edit{ float:right; width:45px; height:45px; background: fade(@black, 35%); }
-						.accept{ float:right; width:45px; height:45px; background: fade(@black, 35%);  }
-					}
-
 				}
 			}
 		}
-	}
+}
 		
 .overlay{ .hide;
 		.popbox{
