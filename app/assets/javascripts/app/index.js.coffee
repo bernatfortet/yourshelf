@@ -18,6 +18,9 @@ class App extends Spine.Controller
     # Initialize controllers:
     #  @append(@items = new App.Items)
     #  ...
+
+    App.Player.init();
+    App.Shelf.init();
     
     Spine.Route.setup()    
 
