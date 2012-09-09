@@ -3,7 +3,11 @@ class Band < ActiveRecord::Base
 
 	#User
 	has_many :userBand
-	has_many :musicians, :through => :userBand, :source => :user
+	has_many :musicians, through: :userBand, source: :user
+	
+	#Album
+	has_many :album_bands
+	has_many :albums, through: :album_bands
 
 	#Category
 	has_many :categoryBand

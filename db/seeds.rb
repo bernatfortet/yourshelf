@@ -7,6 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-user = User.create({ name: "Bernat" })
-band = user.addBand( "Band Title");
-album = band.addAlbum( "Album Name", "Album Description")
+user1 	= User.create({ name: "Bernat" })
+user2 	= User.create({ name: "Ferri" })
+
+band 	= Band.create({ name: "Band Name", biography: "Band Biography"})
+user1.connectToBand( band.id );
+user2.connectToBand( band.id );
+
+album1 	= band.addAlbum( "Album1 Name", "Album1 Description")
+song1 	= album1.addSong( "Album1 Song1 Name ");
+song2 	= album1.addSong( "Album1 Song2 Name ");
+
+
+album2 	= band.addAlbum( "Album2 Name", "Album2 Description")
+song1 	= album2.addSong( "Album2 Song1 Name ");
+song2 	= album2.addSong( "Album2 Song2 Name ");

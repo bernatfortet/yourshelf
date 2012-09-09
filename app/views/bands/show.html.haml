@@ -24,8 +24,9 @@
 
 .band
 	.header
+
 	.albums
-		//= render :partial => "album"
+		= render @band.albums
 
 	.info
 		.about
@@ -36,7 +37,9 @@
 			%a.twitter(href="#" title="Twitter")
 				%span Twitter
 
-		.members Member 1, Member 2
+		.members
+			- @band.musicians.each do |member|
+				= member.name
 
 .player
 	.current-track

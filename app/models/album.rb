@@ -21,6 +21,9 @@ class Album < ActiveRecord::Base
   has_many :albumGenre
   has_many :genres, :through => :albumGenre
 
+  #Band
+  has_one :album
+
   def addSong( name )
     song        = Song.create({ name: name })
     album_song  = AlbumSong.create({ album_id: self.id, song_id: song.id })
