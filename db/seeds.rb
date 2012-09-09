@@ -8,5 +8,5 @@
 
 
 user = User.create({ name: "Bernat" })
-band = user.addBand( "Lifeformed" );
-album = band.addAlbum( "")
+band = user.addBand( "Band Title");
+album = band.addAlbum( "Album Name", "Album Description")

@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
 	has_many :songLike
 	has_many :likedSongs, :through => :songLike, :source => :song
 
-	def addBand( name  )
-		band 		= Band.create({ name: name, biography: "Band Biography", img_url: "img.jpg" })
+	def addBand( name )
+		band 		= Band.create({ name: name, biography: "Band Biography"})
 		user_band 	= UserBand.create({ user_id: self.id, band_id: band.id })
 		band
 	end
