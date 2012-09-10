@@ -1,19 +1,19 @@
-.album
+.album.Album
 	%img.cover(src="../assets/cover.jpg")
 
-	.tracks
+	.songs.SongList
 		.title
 			= album.title
 		.list
 			- album.songs.each do |song|
-				.track
+				.song.Song
 					= song.name
 
 	.desc
 		= album.description
 
-	.bundle-list
-		.bundle
+	.bundle-list.BundlesList
+		.bundle.Bundle
 			.price 
 				.number $3,99
 				span or more

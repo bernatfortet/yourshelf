@@ -13,16 +13,28 @@
 
 class App extends Spine.Controller
 
-  constructor: ->
-    super
-    
-    # Initialize controllers:
-    #  @append(@items = new App.Items)
-    #  ...
 
-    App.Player.init({el: "#Player"});
-    App.Shelf.init();
-    
-    Spine.Route.setup()    
+	constructor: ->
+		super
+
+		# Initialize controllers:
+		#  @append(@items = new App.Items)
+		#  ...
+
+		new App.Player({el: "#Player"})
+		new App.Shelf()
+
+		Spine.Route.setup()
+
+		this.initializer()
+
+	initializer: ->
+		s = Spine.Route.path.split("/")
+		location = s[1];
+		# console.log( location )
+
+		switch( location )
+			when "bands" then new App.Bands({ el: ".Band"})
+
 
 window.App = App

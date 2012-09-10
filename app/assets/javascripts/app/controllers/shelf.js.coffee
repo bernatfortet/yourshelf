@@ -1,7 +1,7 @@
 class App.Shelf extends Spine.Controller
 	constructor: ->
 		super
-		console.log("asdf");
+		@log(" Start Shelf Controller ")
 
 	close: ->
 		$("#Shelf").attr("data-state", "closed")
