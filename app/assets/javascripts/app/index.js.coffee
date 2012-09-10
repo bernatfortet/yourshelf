@@ -12,24 +12,17 @@
 #= require_tree ./views
 
 class App extends Spine.Controller
-	constructor: ->
-		super
 
-		# Initialize controllers:
-		#  @append(@items = new App.Items)
-		#  ...
+  constructor: ->
+    super
+    
+    # Initialize controllers:
+    #  @append(@items = new App.Items)
+    #  ...
 
-		App.Player.init()
-		App.Shelf.init()
-
-		Spine.Route.setup()
-
-	initializer: ->
-		
-
-
-
-
-
+    App.Player.init({el: "#Player"});
+    App.Shelf.init();
+    
+    Spine.Route.setup()    
 
 window.App = App

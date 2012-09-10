@@ -26,7 +26,7 @@
 			- @band.musicians.each do |member|
 				= member.name
 
-.player
+#Player.player
 	.current-track
 		.cover
 			=image_tag("cover.jpg")
@@ -38,9 +38,9 @@
 		.track-name Dark Flute
 
 	.controls
-		.previous
-		.play
-		.next
+		#PrevBtn.previous
+		#PlayBtn.play
+		#NextBtn.next
 		.timeline
 			.progress
 			.current-time 00:30
