@@ -19,7 +19,7 @@ class App extends Spine.Controller
     #  @append(@items = new App.Items)
     #  ...
 
-    App.Player.init();
+    App.Player.init({el: "#Player"});
     App.Shelf.init();
     
     Spine.Route.setup()    
