@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 {
+  "author": "bernatfortet",
   "name": "Yourshelf",
   "version": "0.0.1",
   "private": true,
@@ -14,20 +14,3 @@
     "now": "*"
   }
 }
-=======
-{
-  "author": "marcsampe",
-  "name": "yourshelf.stream",
-  "version": "0.0.0",
-  "repository": {
-    "url": ""
-  },
-  "engines": {
-    "node": "0.6.19"
-  },
-  "dependencies": {
-    "socket.io": "latest"
-  },
-  "devDependencies": {}
-}
->>>>>>> 4b6689bace6c68a8f9d7e37da2cd2573e1a78e37
