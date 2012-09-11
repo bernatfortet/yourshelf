@@ -1,4 +1,4 @@
-.album.Album
+.album.Album{ :id => "Album#{album.id}", :"data-id" => "#{album.id}" }
 	%img.cover(src="../assets/cover.jpg")
 
 	.songs.SongList
@@ -6,7 +6,7 @@
 			= album.title
 		.list
 			- album.songs.each do |song|
-				.song.Song
+				.song.Song{ :id => "Song#{song.id}", :"data-id" => "#{song.id}" }
 					= song.name
 
 	.desc

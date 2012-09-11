@@ -13,7 +13,6 @@
 
 class App extends Spine.Controller
 
-
 	constructor: ->
 		super
 
@@ -21,8 +20,8 @@ class App extends Spine.Controller
 		#  @append(@items = new App.Items)
 		#  ...
 
-		new App.Player({el: "#Player"})
-		new App.Shelf()
+		App.player = new App.Player({el: "#Player"})
+		App.shelf = new App.Shelf({ el: "#Shelf" })
 
 		Spine.Route.setup()
 
@@ -34,7 +33,18 @@ class App extends Spine.Controller
 		# console.log( location )
 
 		switch( location )
-			when "bands" then new App.Bands({ el: ".Band"})
+			when "bands" then band_id = s[2]; this.fetchBand( band_id )
+
+	initializeBandPage: ( band_id ) ->
+		new App.Bands({ el: ".Band", item: App.Band.find( band_id) })
+
+	fetchBand: ( band_id ) ->
+		$.get( App.Band.url( band_id + ".json" ) )
+			.success ( response ) =>
+				App.Band.refresh( response )
+				this.initializeBandPage( band_id )
+
+
 
 
 window.App = App
