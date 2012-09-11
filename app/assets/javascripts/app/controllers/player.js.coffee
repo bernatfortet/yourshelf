@@ -1,4 +1,6 @@
 class App.Player extends Spine.Controller
+	@extend(Spine.Events)
+
 	events:
 		"click #PrevBtn" : "previousHandler"
 		"click #PlayBtn" : "playHandler"
@@ -6,7 +8,16 @@ class App.Player extends Spine.Controller
 
 	constructor: ->
 		super
-		@log(" Start player controller ")
+		@log " Start player controller "
+		Spine.bind "onPlayAlbum", @onPlayAlbum
+
+	
+	onPlayAlbum: (data) =>
+		if data.albumId? && data.songId?
+			songId = 
+		else
+			alert("No albumId or songId");
+
 
 	previousHandler: ->
 		alert("prev Clicked")
