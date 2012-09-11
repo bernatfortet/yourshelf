@@ -17,14 +17,14 @@ band2 	= Band.create({ name: "Platero y tu", biography: "Band2 Biography"})
 
 #Create albums and its songs
 album1 	= band1.addAlbum( "Xapomelon", "Album1 Description") #album year??
-song1 	= album1.addSong( "Chocholoco");
-song2 	= album1.addSong( "Muerdeme");
-song3 	= album1.addSong( "Recuerdos");
+song1 	= album1.addSong( "Chocholoco", "LaPegatina/Xapomelon/Chocholoco.mp3", 150);
+song2 	= album1.addSong( "Muerdeme", "LaPegatina/Xapomelon/Muerdeme.mp3", 154 );
+song3 	= album1.addSong( "Recuerdos", "LaPegatina/Xapomelon/Recuerdos.mp3", 148 );
 
 
 album2 	= band2.addAlbum( "Album2 Name", "Album2 Description")
-song1 	= album2.addSong( "Album2 Song1 Name ");
-song2 	= album2.addSong( "Album2 Song2 Name ");
+song1 	= album2.addSong( "Album2 Song1 Name", "fakePath", 0);
+song2 	= album2.addSong( "Album2 Song2 Name", "fakePath", 0);
 
 # Make User belong to Band
 user1.belongToBand( band1.id );

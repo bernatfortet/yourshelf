@@ -1,0 +1,15 @@
+{
+  "author": "marcsampe",
+  "name": "yourshelf.stream",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "0.6.19"
+  },
+  "dependencies": {
+    "socket.io": "latest"
+  },
+  "devDependencies": {}
+}
