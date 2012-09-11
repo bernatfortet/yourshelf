@@ -9,15 +9,17 @@
 # Create Users
 user1 	= User.create({ name: "Bernat" })
 user2 	= User.create({ name: "Ferri" })
+user2 	= User.create({ name: "Marc" })
 
 #Create a Band
-band1 	= Band.create({ name: "Band1 Name", biography: "Band1 Biography"})
-band2 	= Band.create({ name: "Band2 Name", biography: "Band2 Biography"})
+band1 	= Band.create({ name: "La pegatina", biography: "Band1 Biography"})
+band2 	= Band.create({ name: "Platero y tu", biography: "Band2 Biography"})
 
 #Create albums and its songs
-album1 	= band1.addAlbum( "Album1 Name", "Album1 Description")
-song1 	= album1.addSong( "Album1 Song1 Name ");
-song2 	= album1.addSong( "Album1 Song2 Name ");
+album1 	= band1.addAlbum( "Xapomelon", "Album1 Description") #album year??
+song1 	= album1.addSong( "Chocholoco");
+song2 	= album1.addSong( "Muerdeme");
+song3 	= album1.addSong( "Recuerdos");
 
 
 album2 	= band2.addAlbum( "Album2 Name", "Album2 Description")
