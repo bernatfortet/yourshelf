@@ -1,6 +1,6 @@
 class Song < ActiveRecord::Base
 	
-	attr_accessible :length, :listened_count, :name
+	attr_accessible :length, :listened_count, :name, :path
 
 	#Album
 	has_many :albumSong

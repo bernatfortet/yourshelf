@@ -24,8 +24,8 @@ class Album < ActiveRecord::Base
   #Band
   has_one :album
 
-  def addSong( name )
-    song        = Song.create({ name: name })
+  def addSong( name, path, length )
+    song        = Song.create({ name: name, path: path, listened_count: 0, length: length })
     album_song  = AlbumSong.create({ album_id: self.id, song_id: song.id })
     song
   end

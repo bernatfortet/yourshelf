@@ -1,4 +1,5 @@
 class App.Player extends Spine.Controller
+
 	events:
 		"click #PrevBtn" : "previousHandler"
 		"click #PlayBtn" : "playHandler"
@@ -6,7 +7,7 @@ class App.Player extends Spine.Controller
 
 	constructor: ->
 		super
-		@log(" Start player controller ")
+		@log " Start player controller "
 
 		this.server = io.connect('http://localhost:8080')
 
@@ -19,9 +20,14 @@ class App.Player extends Spine.Controller
 		alert("prev Clicked")
 	
 	playHandler: ( song ) ->
+<<<<<<< HEAD
 		# console.log( song )
 		this.onPlaySong( song )
 		# alert("play Clicked, look at console log")
+=======
+		console.log( song )
+		#alert("play Clicked, look at console log")
+>>>>>>> 4b6689bace6c68a8f9d7e37da2cd2573e1a78e37
 
 	nextHandler: ->
 		alert("next Clicked")
