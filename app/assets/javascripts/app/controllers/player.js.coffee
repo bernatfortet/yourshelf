@@ -20,14 +20,9 @@ class App.Player extends Spine.Controller
 		alert("prev Clicked")
 	
 	playHandler: ( song ) ->
-<<<<<<< HEAD
 		# console.log( song )
 		this.onPlaySong( song )
 		# alert("play Clicked, look at console log")
-=======
-		console.log( song )
-		#alert("play Clicked, look at console log")
->>>>>>> 4b6689bace6c68a8f9d7e37da2cd2573e1a78e37
 
 	nextHandler: ->
 		alert("next Clicked")
