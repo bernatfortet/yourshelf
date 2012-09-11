@@ -1,16 +1,16 @@
-.shelf#Shelf
+.shelf#Shelf( data-state="closed" )
 	.background
 	.inner
 		.albums
 			- User.first.albums.each do |album|
 				.album
 					.cover
-						=image_tag("cover.jpg")
+						= image_tag("cover.jpg")
 
 .band.Band
 	.header
 
-	.albums
+	.albums.AlbumsList
 		= render @band.albums
 
 	.info
