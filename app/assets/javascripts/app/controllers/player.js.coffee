@@ -33,7 +33,7 @@ class App.Player extends Spine.Controller
 		console.log(song)
 	
 		@player.stop() if @player?
-		@player = new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia]);
+		@player = new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia], {preload: true, autoplay: true, loop: false});
 
 		@durationSong = song.length;
 		@duration.text( buzz.toTimer(@durationSong) )
@@ -62,9 +62,9 @@ class App.Player extends Spine.Controller
 	#Player component handlers
 
 	onProgress: (event) =>
-		buffered  = @player.getBuffered();
-		time = @player.getTime();
-		@player.play() if(buffered[0]? && buffered[0].end > time + 10)
+		#buffered  = @player.getBuffered();
+		#time = @player.getTime();
+		#@player.play() if(buffered[0]? && buffered[0].end > time + 10)
 	
 	onTimeUpdate: (e) =>
 		time = @player.getTime()
