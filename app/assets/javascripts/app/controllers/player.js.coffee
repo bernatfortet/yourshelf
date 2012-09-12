@@ -50,12 +50,13 @@ class App.Player extends Spine.Controller
 		alert("next Clicked")
 
 	timelineHandler: (e) =>
-	 	if @player?
-		    x = e.clientX;
-		    left = $(e.target).offset().left;
-		    width = $(e.target).width();	     
-		    tantX1 = ((x-left)/width);
-		    @player.setTime(@durationSong*tantX1)
+		if @player?
+			x = e.clientX;
+			left = $(e.target).offset().left;
+			width = $(e.target).width();	     
+			tantX1 = ((x-left)/width);
+			@log "timelineHandler " + @durationSong*tantX1 
+			@player.setTime(@durationSong*tantX1)
 
 
 	#Player component handlers
