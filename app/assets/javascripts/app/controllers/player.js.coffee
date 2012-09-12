@@ -1,38 +1,73 @@
 class App.Player extends Spine.Controller
 
+	logPrefix: "(Player)"
+
+	elements:
+		"#Progress" 	: "progressBar"
+		"#CurrentTime"  : "currentTime"
+		"#Duration" 	: "duration"
+		"#Timeline"		: "timeBar"
+
 	events:
 		"click #PrevBtn" : "previousHandler"
 		"click #PlayBtn" : "playHandler"
 		"click #NextBtn" : "nextHandler"
+		"click #Timeline": "timelineHandler"
 
 	constructor: ->
 		super
 		@log " Start player controller "
+		@inizialitze()
 
-		this.server = io.connect('http://localhost:8080')
+	inizialitze: ->
+		if buzz.isOGGSupported()
+			@typeMedia = "ogg"
+		else 
+			@typeMedia = "mp3"
 
-		this.server.on 'onSendSong', (data) ->
-			console.log( "Recieving song"  + data )
+		@log "Media type: " + @typeMedia
 
-	# Interactino Handlers =================================
+	#Handlers =================================
+
+	playAlbum: (song) ->
+		console.log(song)
+	
+		@player.stop() if @player?
+		@player = new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia]);
+
+		@durationSong = song.length;
+		@duration.text( buzz.toTimer(@durationSong) )
+		@player.bind("timeupdate", @onTimeUpdate );
+		@player.bind("progress", @onProgress );
 
 	previousHandler: ->
 		alert("prev Clicked")
 	
-	playHandler: ( song ) ->
-		# console.log( song )
-		this.onPlaySong( song )
-		# alert("play Clicked, look at console log")
+	playHandler: ->
+		@player.togglePlay() if @player?
 
 	nextHandler: ->
 		alert("next Clicked")
 
-	# Emitters =================================
+	timelineHandler: (e) =>
+	 	if @player?
+		    x = e.clientX;
+		    left = $(e.target).offset().left;
+		    width = $(e.target).width();	     
+		    tantX1 = ((x-left)/width);
+		    @player.setTime(@durationSong*tantX1)
 
-	onPlaySong: ( song ) ->
-		this.send( "onPlaySong", "Testing onPlaySong #{song.id}" )
 
-	# Utils =================================
-	send: ( type, params ) ->
-		console.log( "Sending --> type: #{type}");
-		this.server.emit( type, params )
+	#Player component handlers
+
+	onProgress: (event) =>
+		buffered  = @player.getBuffered();
+		time = @player.getTime();
+		@player.play() if(buffered[0]? && buffered[0].end > time + 10)
+	
+	onTimeUpdate: (e) =>
+		time = @player.getTime()
+		timer = buzz.toTimer(time)
+		percent = buzz.toPercent( time, @durationSong )
+		@currentTime.text(timer)
+		@progressBar.css("width", percent + "%")

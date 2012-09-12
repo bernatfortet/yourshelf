@@ -8,5 +8,5 @@ class App.Songs extends Spine.Controller
 		@log(" Start Songs Controller ")
 
 	playSong: ->
-		App.player.playHandler( this.item )
+		App.player.playAlbum( this.item )
 			

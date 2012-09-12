@@ -2,6 +2,49 @@
  * Module dependencies.
  */
 
+
+var http = require("http");
+var url  = require('url');
+var fs = require('fs');
+
+
+http.createServer(function(request, response) {
+    
+    var url_parts = url.parse(request.url, true);
+    var query = url_parts.query;
+
+    console.log(query); //{Object}
+   
+    if(query.media == "ogg") mediaType = "audio/ogg";
+    else mediaType = "audio/mp3";
+   
+    response.writeHead(200, {"Content-Type": mediaType});
+
+    var buffer = fs.readFileSync('songs/' + query.id + '.' + query.media);
+
+/*
+    var out = new Buffer(128);
+    for(var i = 0; i < buffer.length-128; i+=128) {
+    buffer.copy(out, 0, i, i+128);
+    response.write(out);
+    }
+    
+    buffer.copy(out, 0, i, buffer.length);
+    response.write(out);
+    
+    response.end();
+    
+*/
+
+    response.write(buffer);
+    
+    response.end();
+
+
+}).listen(8888);
+
+
+/*
 var socket = require('socket.io');
 
 var express = require('express')
