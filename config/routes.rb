@@ -1,6 +1,4 @@
 Yourshelf::Application.routes.draw do
-  devise_for :views
-
   #devise_for :users
   #add sign_out route for GET method
   devise_for :users do
