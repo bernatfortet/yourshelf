@@ -1,9 +1,13 @@
 Yourshelf::Application.routes.draw do
+  devise_for :views
+
   #devise_for :users
   #add sign_out route for GET method
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
+  #per modificar rutes
+  #devise_for :users, :path_names => { :sign_up => "register" }
 
   resources :album_bands
 
