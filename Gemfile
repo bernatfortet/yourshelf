@@ -19,3 +19,5 @@ end
 gem 'jquery-rails'
 gem 'spine-rails'
 
+gem 'devise', '>= 2.0'
+

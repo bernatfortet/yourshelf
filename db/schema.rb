@@ -11,14 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911092922) do
-
-  create_table "album_bands", :force => true do |t|
-    t.integer  "album_id"
-    t.integer  "band_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20120915181706) do
 
   create_table "album_categories", :force => true do |t|
     t.integer  "album_id"
@@ -63,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20120911092922) do
     t.string   "image_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "path"
   end
 
   create_table "categories", :force => true do |t|
@@ -112,16 +104,6 @@ ActiveRecord::Schema.define(:version => 20120911092922) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
   create_table "song_likes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "song_id"
@@ -165,8 +147,21 @@ ActiveRecord::Schema.define(:version => 20120911092922) do
     t.boolean  "has_weekly_mailing"
     t.boolean  "has_features_newsletter"
     t.integer  "language_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.string   "email",                   :default => "", :null => false
+    t.string   "encrypted_password",      :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",           :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
