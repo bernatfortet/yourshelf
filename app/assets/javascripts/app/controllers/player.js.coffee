@@ -1,3 +1,5 @@
+#= require ../models/song
+
 class App.Player extends Spine.Controller
 
 	logPrefix: "(Player)"
@@ -25,31 +27,61 @@ class App.Player extends Spine.Controller
 		else 
 			@typeMedia = "mp3"
 
+		@playerlist = {}
+		@songPosition = 0
+
 		@log "Media type: " + @typeMedia
 
 	#Handlers =================================
 
+	#TODO: rebre album id, song position or song id
 	playAlbum: (song) ->
 		console.log(song)
 	
-		@player.stop() if @player?
-		@player = new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia], {preload: true, autoplay: true, loop: false});
+		@playerlist = App.Song.all()
 
-		@durationSong = song.length;
-		@duration.text( buzz.toTimer(@durationSong) )
-		@player.bind("timeupdate", @onTimeUpdate );
-		@player.bind("progress", @onProgress );
+		@player.stop() if @player?
+
+		while @playerlist[@songPosition].id != song.id
+			++@songPosition
+
+		@_playSong(@playerlist[@songPosition])
+		@log("Playing song " + @songPosition)
+
+		#group = []
+		#for al in @album
+		#	group.push( new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia] ) )
+
+		#@player = new buzz.group(group);	
 
 	previousHandler: ->
-		alert("prev Clicked")
+
+		@player.stop() if @player?
+		
+		if @songPosition > 0
+			--@songPosition
+			@_playSong(@playerlist[@songPosition])
+			@log("Playing song " + @songPosition)
+		else
+			alert("first song played, u cant prev")
 	
 	playHandler: ->
+		@log("Playing song " + @songPosition)
 		@player.togglePlay() if @player?
 
 	nextHandler: ->
-		alert("next Clicked")
+		
+		@player.stop() if @player?
+		
+		if @songPosition < @playerlist.length-1
+			++@songPosition
+			@_playSong(@playerlist[@songPosition])
+			@log("Playing song " + @songPosition)
+		else
+			alert("last song played, u cant next")
 
 	timelineHandler: (e) =>
+		alert("Use case bugged")
 		if @player?
 			x = e.clientX;
 			left = $(e.target).offset().left;
@@ -72,3 +104,14 @@ class App.Player extends Spine.Controller
 		percent = buzz.toPercent( time, @durationSong )
 		@currentTime.text(timer)
 		@progressBar.css("width", percent + "%")
+
+
+	# Private functions
+
+	_playSong: (song) =>
+		@player = new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia], {preload: true, autoplay: true, loop: false});
+		@durationSong = song.length;
+		@duration.text( buzz.toTimer(@durationSong) )
+		@player.bind("timeupdate", @onTimeUpdate );
+		@player.bind("progress", @onProgress );
+
