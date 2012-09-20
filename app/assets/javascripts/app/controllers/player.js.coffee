@@ -38,6 +38,7 @@ class App.Player extends Spine.Controller
 	playAlbum: (song) ->
 		console.log(song)
 	
+		@songPosition = 0
 		@playerlist = App.Song.all()
 
 		@player.stop() if @player?
@@ -70,7 +71,6 @@ class App.Player extends Spine.Controller
 		@player.togglePlay() if @player?
 
 	nextHandler: ->
-		
 		@player.stop() if @player?
 		
 		if @songPosition < @playerlist.length-1
@@ -81,7 +81,6 @@ class App.Player extends Spine.Controller
 			alert("last song played, u cant next")
 
 	timelineHandler: (e) =>
-		alert("Use case bugged")
 		if @player?
 			x = e.clientX;
 			left = $(e.target).offset().left;
@@ -89,6 +88,7 @@ class App.Player extends Spine.Controller
 			tantX1 = ((x-left)/width);
 			@log "timelineHandler " + @durationSong*tantX1 
 			@player.setTime(@durationSong*tantX1)
+			console.log(@player)
 
 
 	#Player component handlers
@@ -97,6 +97,7 @@ class App.Player extends Spine.Controller
 		#buffered  = @player.getBuffered();
 		#time = @player.getTime();
 		#@player.play() if(buffered[0]? && buffered[0].end > time + 10)
+		#console.log(buffered)
 	
 	onTimeUpdate: (e) =>
 		time = @player.getTime()
@@ -105,13 +106,24 @@ class App.Player extends Spine.Controller
 		@currentTime.text(timer)
 		@progressBar.css("width", percent + "%")
 
+	onSeeking: (e) =>
+		console.log(e)
+	
+	onSeeked: (e) =>
+		console.log(e)
+		console.log(e.target)
+
 
 	# Private functions
 
 	_playSong: (song) =>
 		@player = new buzz.sound(["http://127.0.0.1:8888/?id="+song.path+"&media="+@typeMedia], {preload: true, autoplay: true, loop: false});
+		@player.set("duration", @durationSong) #HACK
 		@durationSong = song.length;
 		@duration.text( buzz.toTimer(@durationSong) )
 		@player.bind("timeupdate", @onTimeUpdate );
 		@player.bind("progress", @onProgress );
+		@player.bind("seeked", @onSeeked );
+		@player.bind("seeking", @onSeeking );
+		@player.bind("waiting", @onSeeking );
 
